@@ -10,6 +10,11 @@ namespace RomanNumeralsConverter.Tests
     {
         private readonly IMapService<int,string> mapService;
 
+        public MappingTests()
+        {
+            mapService = new MapToRomanService();
+        }
+
         [Theory]
         [InlineData(1, "I")]
         [InlineData(3, "III")]
@@ -26,7 +31,7 @@ namespace RomanNumeralsConverter.Tests
         [InlineData(399, "CCCXCIX")]
         [InlineData(499, "CDXCIX")]
         [InlineData(894, "DCCCXCIV")]
-        [InlineData(999, "MCXCIX")]
+        [InlineData(999, "CMXCIX")]
         [InlineData(3999, "MMMCMXCIX")]
         public void WhenNumberIsZero_ShouldReturnEmptyString(int arg, string expected)
         {
