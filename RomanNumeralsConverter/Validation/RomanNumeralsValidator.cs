@@ -8,19 +8,47 @@ namespace RomanNumeralsConverter.Validation
     {
         public IValidationResult Validate(int arabicValue)
         {
-            var message = string.Empty;
-            var isValid = true;
-            if( arabicValue < 0)
+            if (NumberIsNegative(arabicValue))
             {
-                isValid = false;
-                message = "Number must be positive";
+                return IsNegativeResult();
             }
-            else if(arabicValue > 3999)
+            else if (NumberIsTooLarge(arabicValue))
             {
-                isValid = false;
-                message = "Number must be less than 4000";
+                return IsTooLargeResult();
             }
+
+            return IsValidResult();
+        }
+
+        private IValidationResult IsTooLargeResult()
+        {
+            var isValid = false;
+            var message = "Number must be less than 4000";
             return new ValidationResult(isValid, message);
+        }
+
+        private IValidationResult IsNegativeResult()
+        {
+            var isValid = false;
+            var message = "Number must be positive";
+            return new ValidationResult(isValid, message);
+        }
+
+        private IValidationResult IsValidResult()
+        {
+            var isValid = true;
+            var message = string.Empty;
+            return new ValidationResult(isValid, message);
+        }
+
+        private bool NumberIsNegative(int arabicValue)
+        {
+            return arabicValue < 0;
+        }
+
+        private bool NumberIsTooLarge(int arabicValue)
+        {
+            return arabicValue > 3999;
         }
     }
 }
