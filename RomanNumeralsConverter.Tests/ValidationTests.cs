@@ -7,6 +7,11 @@ namespace RomanNumeralsConverter.Tests
     {
 
         private readonly IValidator validator;
+
+        public ValidationTests()
+        {
+            this.validator = new RomanNumeralsValidator();
+        }
         
         [Fact]
         public void WhenArabicValueIsNegative_ValidationShouldReturnFalseAndProperMessage()
@@ -28,7 +33,7 @@ namespace RomanNumeralsConverter.Tests
             var result = validator.Validate(arabicValue);
 
             Assert.False(result.IsValid);
-            Assert.Equal("Number must be smaller than 4000", result.Message);
+            Assert.Equal("Number must be less than 4000", result.Message);
         }
 
         [Fact]
@@ -38,7 +43,7 @@ namespace RomanNumeralsConverter.Tests
 
             var result = validator.Validate(arabicValue);
 
-            Assert.False(result.IsValid);
+            Assert.True(result.IsValid);
             Assert.Equal(string.Empty, result.Message);
         }
     }
