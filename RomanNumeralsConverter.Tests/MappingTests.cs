@@ -16,6 +16,7 @@ namespace RomanNumeralsConverter.Tests
         }
 
         [Theory]
+        [InlineData(0, "")]
         [InlineData(1, "I")]
         [InlineData(3, "III")]
         [InlineData(4, "IV")]
@@ -33,7 +34,7 @@ namespace RomanNumeralsConverter.Tests
         [InlineData(894, "DCCCXCIV")]
         [InlineData(999, "CMXCIX")]
         [InlineData(3999, "MMMCMXCIX")]
-        public void WhenNumberIsZero_ShouldReturnEmptyString(int arg, string expected)
+        public void WhenNumberIsValid_ShouldReturnGoodValue(int arg, string expected)
         {
             var actual = mapService.Map(arg);
 
