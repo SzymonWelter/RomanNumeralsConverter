@@ -9,6 +9,11 @@ namespace RomanNumeralsConverter.Tests
     {
         public IConverter<int, string> converter;
 
+        public ConverterTests()
+        {
+            converter = new RomanNumeralsConverter();
+        }
+
         [Fact]
         public void WhenArabicValueIsNegative_ConverterShouldThrowArgumentExceptionWithProperMessage()
         {
