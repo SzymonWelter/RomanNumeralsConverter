@@ -8,9 +8,16 @@ namespace RomanNumeralsConverter
 {
     public class RomanNumeralsConverter : IConverter<int, string>
     {
+        private readonly IMapService<int, string> mapper;
+        private readonly IValidator validation;
+        public RomanNumeralsConverter()
+        {
+            this.validation = new RomanNumeralsValidator();
+            this.mapper = new MapToRomanService();
+        }
+
         public string Convert(int arabicValue)
         {
-            var validation = new RomanNumeralsValidator();
             var valdationResult = validation.Validate(arabicValue);
 
             if (!valdationResult.IsValid)
@@ -18,8 +25,7 @@ namespace RomanNumeralsConverter
                 throw new ArgumentException(valdationResult.Message);
             }
 
-            var mapService = new MapToRomanService();
-            var mapResult = mapService.Map(arabicValue);
+            var mapResult = mapper.Map(arabicValue);
 
             return mapResult;
         }

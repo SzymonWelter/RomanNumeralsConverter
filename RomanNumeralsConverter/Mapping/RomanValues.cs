@@ -7,10 +7,10 @@ namespace RomanNumeralsConverter.Mapping
 {
     internal class RomanValues : IEnumerable<KeyValuePair<int, string>>
     {
-        private Dictionary<int, string> NumberRomanDictionary { get; }
+        private readonly Dictionary<int, string> numberRomanDictionary;
         public RomanValues()
         {
-            this.NumberRomanDictionary = new Dictionary<int, string>
+            this.numberRomanDictionary = new Dictionary<int, string>
             {
                 { 1000, "M" },
                 { 900, "CM" },
@@ -30,12 +30,12 @@ namespace RomanNumeralsConverter.Mapping
 
         public IEnumerator<KeyValuePair<int, string>> GetEnumerator()
         {
-            return NumberRomanDictionary.GetEnumerator();
+            return numberRomanDictionary.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return NumberRomanDictionary.GetEnumerator();
+            return numberRomanDictionary.GetEnumerator();
         }
     }
 }
