@@ -20,33 +20,33 @@ namespace RomanNumeralsConverter.Validation
             return IsValidResult();
         }
 
-        private IValidationResult IsTooLargeResult()
+        public IValidationResult IsTooLargeResult()
         {
             var isValid = false;
             var message = "Number must be less than 4000";
             return new ValidationResult(isValid, message);
         }
 
-        private IValidationResult IsNegativeResult()
+        public IValidationResult IsNegativeResult()
         {
             var isValid = false;
             var message = "Number must be positive";
             return new ValidationResult(isValid, message);
         }
 
-        private IValidationResult IsValidResult()
+        public IValidationResult IsValidResult()
         {
             var isValid = true;
             var message = string.Empty;
             return new ValidationResult(isValid, message);
         }
 
-        private bool NumberIsNegative(int arabicValue)
+        public bool NumberIsNegative(int arabicValue)
         {
             return arabicValue < 0;
         }
 
-        private bool NumberIsTooLarge(int arabicValue)
+        public bool NumberIsTooLarge(int arabicValue)
         {
             return arabicValue > 3999;
         }
